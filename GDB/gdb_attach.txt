@@ -1,0 +1,27 @@
+
+with pwntools and gdb it is possible to attach to a created process
+proc = pwn.process("binaryname")
+
+I got the problem that it will not open a new terminal per default so 
+I had to do a work around. 
+
+add: context.terminal = ['tmux', '-f'] 
+to the exploit python script
+
+copy the link/line after the python script execution, it looks like:
+  /usr/bin/gdb -q  "/home/niku/Documents/CTFs_H4XXOR/CTFs/Defcon_Qual_2017/smashme" 9468 -x "/tmp/pwnNFeuoG.gdb"
+and start it in a new terminal with: tmux -c 'line'
+it's important to put it in single quotes.
+
+Note:
+the process starts directly after the creation and will halt only at commands
+which require user input, so a gdb script with the breakpoint "b main" is 
+useless, the gdb will enter at the fgets(or similar) command and never reach the
+breakpoint at the main function.
+
+It is also important to enter proc.interactive() at the end because otherwise it
+is possible that the process ends which the gdb wants to attach.
+
+See: script/gdb_attach.py
+
+
