@@ -1,0 +1,6 @@
+https://github.com/angr/simuvex/blob/master/simuvex/s_options.py
+https://research.kudelskisecurity.com/2017/01/06/sans-holiday-hack-challenge-2016/
+https://github.com/angr/angr/issues/176
+https://github.com/angr/angr-doc/blob/master/docs/toplevel.md
+https://github.com/angr/simuvex/blob/master/simuvex/s_state.py#L90
+https://medium.com/@trufae/scripting-r2-with-pipes-47a7e14c50aa#.2a3yy2tox
