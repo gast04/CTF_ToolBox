@@ -1,0 +1,5 @@
+
+a simple angr script without a find target will not gain
+code coverage on the binary...
+
+

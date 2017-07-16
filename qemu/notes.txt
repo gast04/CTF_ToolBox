@@ -1,0 +1,10 @@
+
+with Qemu it is possible to emulate whole operating systems
+and also only userspace programs -> userspace emulator
+
+  qemu-system-*  => system emulators
+  qemu-*         => userspace emulators
+
+Flag -strace => log all system calls
+
+

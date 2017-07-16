@@ -1,0 +1,46 @@
+the Visual Panels mode of r2 is kind a new mode for the reverse
+engineering tool, but the usage is rather hard, here is a short 
+cheat sheet...
+
+
+** General notes:
+
+$$: current seek
+shift+(arrow right): disable colors 
+
+reference registers with r:XX to achieve
+independency according to x86 and x64
+
+
+** Navigation:
+
+tab: switch between the panels in clockwise direction
+x:   close the current panel
+
+h: shift panel content left
+shift+h: shift panel splitter left
+
+l: shift panel content right
+shift+l: shift panel splitter right
+
+j: scroll in current panel
+shift+j: next panel
+
+k: scroll in current panel 
+shift+k: previous panel 
+
+m: open file dialog
+shift+m: create new custom panel with name and command
+
+
+
+** Sample: 
+create a new panel which shows the stack with the
+references similar to pxr 20 @ rsp
+
+create a new panel with shift+m and the command
+is "pxr 180@r:SP" this will print 180 bytes of the
+stack according to the binary architecture and with 
+references
+
+

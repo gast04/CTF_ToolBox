@@ -1,0 +1,22 @@
+
+to dump the tcp traffic the following command would be 
+enough:
+
+  sudo tcpdump -C 1 -w dumpname
+
+to set the network card into promicious mode, sudo rights
+are required.
+
+
+-C file_size of the dump files
+   if size gets larger a new file is created with and
+   increasing number at the end
+
+-w sets the filename
+
+port 80 only allow a specific port
+
+
+TODO: add command for adding timestamp in filename
+
+
