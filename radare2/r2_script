@@ -1,0 +1,8 @@
+dsf   # step until frame -> to return from libc
+.(changeStackView64) 
+
+dso 10  # step over
+ds 4    # single step
+dsf     # step until frame
+Vpp   # automatically switch to Visual Mode
+

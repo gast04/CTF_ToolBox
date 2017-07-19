@@ -1,5 +1,10 @@
-TODO:
-  add scripting with r2
+ 
+call the r2-script with the start flag -i
+  r2 -i r2_script -d <pid>
 
+in the python script just add:
+  pwn.gdb.attach(process) 
 
+( and probably set the terminal for pwntools with 
+  pwn.context.terminal = ["tmux", "-f"] )
 
