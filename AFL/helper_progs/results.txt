@@ -1,0 +1,4 @@
+
+AFL found the first crash (argv[1][0] == 0x00) pretty fast
+but failed to detect the second one(stopped after a hour)
+

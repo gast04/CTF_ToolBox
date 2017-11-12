@@ -18,6 +18,9 @@ in instrumentation mode)
 # start fuzzing with the following command
 afl-fuzz -Q -i ../in_folder -o ../out_folder binary <binary args>
 
+# call with wrapper
+./afl-fuzz -T log_header -Q -i ../in_folder -o ../out_folder wrapper logger
+
 everything which is passed after the program is parsed as command 
 line argument to the program except @@, this is a special keyword and will 
 get replaced by an input file, usefull if the binary reads content
@@ -41,4 +44,9 @@ we want to fuzz command line arguments.
 
 The wrapper needs the program name as first parameter, additional command
 line arguments will add the fuzzer.
+
+
+### Results:
+I have now a pretty nice remote fuzzer, maybe it helps me one time :)
+
 
