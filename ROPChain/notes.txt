@@ -1,0 +1,39 @@
+
+vsyscall:
+  if a binary is PIE, it is possible that there is a Region
+  which is always mapped the same. this is vsyscall.
+
+  This was an old speed up idea for executing syscalls in 
+  userspace to make it faster, but from the security view
+  this is a problem, because it is a gadget we can use at
+  a fixed address.
+
+  in r2 just look at the memory maps -> dm (dm?)
+
+        ;-- map._vsyscall_._r_x:                       
+        0xffffffffff600000      48c7c0600000.  mov rax, 0x60
+        0xffffffffff600007      0f05           syscall 
+        0xffffffffff600009      c3             ret 
+
+  as we can see this can will call the syscall 0x60 (96) which
+  is the "gettimeofday"-syscall
+
+  (if there is a vsyscall region mapped, always analyse the whole 
+  region, there can be multiple instructions, distributed over a 
+  wide range)
+
+  TODO:
+  function addr_to_syscall_nr validates whether this address 
+  is permitted. Address must be one of 0xffffffffff600000,
+  0xffffffffff600400, 0xffffffffff600800
+  
+  TODO:
+  I would like to mention that currently Linux supports vDSO 
+  area. It has the same functionality as vsyscall but the 
+  difference is that the localization of it is randomized.
+
+
+  now, but how we can use this?
+  TODO   
+
+

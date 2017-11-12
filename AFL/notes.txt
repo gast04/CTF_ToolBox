@@ -1,0 +1,44 @@
+
+### AFL-notes-tipps:
+
+you will need the source code for fuzzing with afl,
+but this is not the case in CTF-challenges...
+(if we would have the source code we can instrument 
+the final binary, I have not tried this scenario)
+
+without and instrumented binary there exists the options, 
+-n for blind fuzzing or -Q for fuzzing with Qemu.
+They call this black box binary fuzzing.
+(Fuzzing in qemu mode is approximately 2-5x slower than
+in instrumentation mode)
+
+
+### AFL-usage:
+
+# start fuzzing with the following command
+afl-fuzz -Q -i ../in_folder -o ../out_folder binary <binary args>
+
+everything which is passed after the program is parsed as command 
+line argument to the program except @@, this is a special keyword and will 
+get replaced by an input file, usefull if the binary reads content
+from a file.
+
+Per default it needs an input directory which contains testcases, and an 
+output directory where it will store it's fuzzing results
+
+
+### WEIRD (good to know):
+
+AFL does not support command line arguments fuzzying they claim that 
+it is not that useful in practice, probably they are right.
+
+But what we can do is to write a wrapper program :)
+
+Wrapper:
+wrapper uses execve, because this replaces the current process image
+with a new one, or more precisely with the provided programm where
+we want to fuzz command line arguments.
+
+The wrapper needs the program name as first parameter, additional command
+line arguments will add the fuzzer.
+
