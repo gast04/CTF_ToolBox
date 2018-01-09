@@ -1,0 +1,13 @@
+
+# start binary with qemu
+qemu-arm -singlestep -L /usr/arm-linux-gnueabi/ -g 1234 <binary> <args>  &
+
+# connect with gdb(pwndbg)
+gdb-multiarch <binary> <args>
+  set endian little
+  set architecture arm
+  target remote:1234
+
+# connect with radare2
+r2 -a arm -b 32 -d gdb://127.0.0.1:1234 <binary> <args>
+
