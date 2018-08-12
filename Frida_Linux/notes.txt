@@ -1,0 +1,15 @@
+
+# some usefull objects
+Process
+Module
+DebugSymbol (only works with Debug Symbols)
+Memory
+
+
+# list all functions available in Process-Object
+var func;
+for(func in Process){
+  send("Func: " + func);
+}
+
+
