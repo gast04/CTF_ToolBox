@@ -1,9 +1,9 @@
-
 import frida
 import sys
+import time
 
 def on_message(mess, data):
-    print mess #['payload']
+    print(mess) #['payload']
     #print mess, data
 
 # attach to process
@@ -19,5 +19,6 @@ script = sess.create_script(js_script.read() % func_addr)
 
 script.on('message', on_message)
 script.load()
-raw_input("press Enter to exit") # to keep script alive
+
+time.sleep(100) # to keep script alive
 
