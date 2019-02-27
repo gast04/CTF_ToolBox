@@ -9,5 +9,12 @@ gdb-multiarch <binary> <args>
   target remote:1234
 
 # connect with radare2
-r2 -a arm -b 32 -d gdb://127.0.0.1:1234 <binary> <args>
+r2 -a arm -b 32 -d gdb://127.0.0.1:1234
+
+# my last experience: 27.2.2019
+wasn't super good, I dont know where the output is going, 
+couldn't redirect with a profile
+and r2 cannot really analyze the code provided by qemu-arm but I can debug
+
+
 
