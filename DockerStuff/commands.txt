@@ -1,0 +1,16 @@
+
+# if not enabled and started
+sudo systemctl start docker.service
+
+# list docker images
+docker images
+
+# start a docker container
+docker run -it <image> <command>
+
+# connect to a running docker image
+docker exec -it <container-id> <command>
+
+# list all running container
+docker ps
+
