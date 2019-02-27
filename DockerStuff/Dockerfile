@@ -7,9 +7,8 @@ RUN apt-get upgrade -y
 # basic
 RUN apt-get install -y git wget zsh vim
 
-# only install python3
-# install python3 and pip3 and map to python and pip
-RUN apt-get install -y python3
+# only install python3 
+# install python3 and pip3 and map to python and pip RUN apt-get install -y python3
 RUN ln -s /usr/bin/python3.6 /usr/bin/python
 RUN apt-get update --fix-missing
 RUN apt-get install -y python3-pip
@@ -19,10 +18,10 @@ RUN ln -s /usr/bin/pip3 /usr/bin/pip
 RUN pip install ipython
 RUN pip install r2pipe
 RUN pip install git+https://github.com/arthaud/python3-pwntools.git
+RUN pip install frida-tools
 
 # developing
-RUN apt-get install -y make gcc g++
-RUN apt-get install -y cmake
+RUN apt-get install -y make gcc g++ cmake
 
 # install oh-my-zsh with autosuggestions
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
@@ -58,7 +57,16 @@ RUN cd /root/git-repos/capstone/bindings/python && make install
 
 # install unicorn
 RUN pip install unicorn
-# maybe compile from source, but works for now
+# F***...
+#ERROR: Cannot use 'python', Python 2.4 or later is required.
+#       Note that Python 3 or later is not yet supported.
+#       Use --python=/path/to/python to specify a supported Python.
+# there is a crash when you call mem_write, I have to check...
+
+# install binwalk
+#RUN git clone https://github.com/ReFirmLabs/binwalk.git /root/git-repos/binwalk
+#RUN cd /root/git-repos/binwalk && python setup.py install
+#RUN pip install pylzma
 
 # install Triton
 #https://github.com/JonathanSalwan/Triton/
@@ -68,5 +76,12 @@ RUN pip install unicorn
 # Reversing ARM-Binaries ToolChain
 ################################################################################
 
-RUN apt-get install qemu
-# TODO
+RUN apt-get install -y qemu
+RUN apt-get install -y gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+
+# Tested with:
+# qemu-arm -singlestep -L /usr/arm-linux-gnueabi/ -g 1234 <binary> <args>  &
+# r2 -a arm -b 32 -d gdb://127.0.0.1:1234
+# works for static and dynamic linked binaries
+# don't forget to add -L /usr/arm-linux-gnueabi for dynimcally linked binaries
+
