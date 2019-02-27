@@ -16,5 +16,15 @@ wasn't super good, I dont know where the output is going,
 couldn't redirect with a profile
 and r2 cannot really analyze the code provided by qemu-arm but I can debug
 
+# compile and run ARM-binariesi (dynamic linked)
+arm-linux-gnueabi-gcc test.c 
+qemu-arm -L /usr/arm-linux-gnueabi a.out
+
+# compile and run ARM-binariesi (static linked)
+arm-linux-gnueabi-gcc -static test.c 
+qemu-arm a.out
+
+# could debug statically and dynamically linked binaries
+
 
 
