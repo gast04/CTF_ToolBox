@@ -67,6 +67,22 @@ RUN apt-get autoremove -y
 RUN ln -s /usr/bin/python3.6 /usr/bin/python
 RUN cd /root/git-repos/unicorn/bindings/python && make install3
 
+# Issue I faced:
+#Traceback (most recent call last):
+#  File "x86_sample.py", line 634, in <module>
+#    test_i386_context_save()
+#  File "x86_sample.py", line 443, in test_i386_context_save
+#    mu.mem_write(address, code)
+#  File "/usr/local/lib/python3.6/dist-packages/unicorn-1.0.2-py3.6.egg/unicorn/unicorn.py", line 438, in mem_write
+#ctypes.ArgumentError: argument 3: <class 'TypeError'>: wrong type
+#
+# this happens when the code has the wrong type, for example
+# code = '\x40' -> not working
+# code = "\x40" -> not working
+# code = b'\x40' -> working
+# code = b"\x40" -> working
+
+
 # install binwalk
 #RUN git clone https://github.com/ReFirmLabs/binwalk.git /root/git-repos/binwalk
 #RUN cd /root/git-repos/binwalk && python setup.py install
