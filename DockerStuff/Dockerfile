@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 
 # update
-RUN apt-get update
-RUN apt-get upgrade -y
+#RUN apt-get update
+#RUN apt-get upgrade -y
 
 # basic
 RUN apt-get install -y git wget zsh vim
@@ -55,13 +55,17 @@ RUN cd /root/git-repos/capstone && ./make.sh
 RUN cd /root/git-repos/capstone && ./make.sh install
 RUN cd /root/git-repos/capstone/bindings/python && make install
 
-# install unicorn
-RUN pip install unicorn
-# F***...
-#ERROR: Cannot use 'python', Python 2.4 or later is required.
-#       Note that Python 3 or later is not yet supported.
-#       Use --python=/path/to/python to specify a supported Python.
-# there is a crash when you call mem_write, I have to check...
+# install unicorn (it needs python2.x for installation)
+# Note: python3 is not tested, for installation it needs python2 (28.2.2019)
+# but it worked with my code snippets so I will try with python3
+RUN git clone https://github.com/unicorn-engine/unicorn.git /root/git-repos/unicorn
+RUN apt-get install -y python
+RUN cd /root/git-repos/unicorn && ./make.sh
+RUN cd /root/git-repos/unicorn && ./make.sh install
+RUN apt-get remove -y python2.7
+RUN apt-get autoremove -y
+RUN ln -s /usr/bin/python3.6 /usr/bin/python
+RUN cd /root/git-repos/unicorn/bindings/python && make install3
 
 # install binwalk
 #RUN git clone https://github.com/ReFirmLabs/binwalk.git /root/git-repos/binwalk

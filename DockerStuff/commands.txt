@@ -14,3 +14,6 @@ docker exec -it <container-id> <command>
 # list all running container
 docker ps
 
+# commit a running docker container into an image
+docker commit <container-id> [REPOSITORY[:TAG]]
+
