@@ -1,4 +1,3 @@
-
 import unicorn
 
 X86_CODE32 = b"\x41\x4a"
