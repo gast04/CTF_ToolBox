@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 
 # update
-#RUN apt-get update
-#RUN apt-get upgrade -y
+RUN apt-get update
+RUN apt-get upgrade -y
 
 # basic
 RUN apt-get install -y git wget zsh vim
@@ -55,7 +55,7 @@ RUN cd /root/git-repos/capstone && ./make.sh
 RUN cd /root/git-repos/capstone && ./make.sh install
 RUN cd /root/git-repos/capstone/bindings/python && make install
 
-# install unicorn (it needs python2.x for installation)
+# install unicorn from source (it needs python2.x for installation)
 # Note: python3 is not tested, for installation it needs python2 (28.2.2019)
 # but it worked with my code snippets so I will try with python3
 RUN git clone https://github.com/unicorn-engine/unicorn.git /root/git-repos/unicorn
@@ -82,6 +82,10 @@ RUN cd /root/git-repos/unicorn/bindings/python && make install3
 # code = b'\x40' -> working
 # code = b"\x40" -> working
 
+# install ropper (needs filebytes)
+RUN git clone https://github.com/sashs/Ropper.git /root/git-repos/ropper
+RUN pip install filebytes 
+RUN cd /root/git-repos/ropper && python setup.py install
 
 # install binwalk
 #RUN git clone https://github.com/ReFirmLabs/binwalk.git /root/git-repos/binwalk
