@@ -95,17 +95,20 @@ RUN cd /root/git-repos/ropper && python setup.py install
 # install Triton
 #https://github.com/JonathanSalwan/Triton/
 
+# pwndbg (for heapanlysis)
+RUN git clone https://github.com/pwndbg/pwndbg.git /root/git-repos/pwndbg
+RUN cd /root/git-repos/pwndbg && ./setup.sh
 
 ################################################################################
 # Reversing ARM-Binaries ToolChain
 ################################################################################
 
-RUN apt-get install -y qemu
-RUN apt-get install -y gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+#RUN apt-get install -y qemu
+#RUN apt-get install -y gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
 
 # Tested with:
 # qemu-arm -singlestep -L /usr/arm-linux-gnueabi/ -g 1234 <binary> <args>  &
 # r2 -a arm -b 32 -d gdb://127.0.0.1:1234
 # works for static and dynamic linked binaries
 # don't forget to add -L /usr/arm-linux-gnueabi for dynimcally linked binaries
-
+ 
