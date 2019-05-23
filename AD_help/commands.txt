@@ -1,0 +1,91 @@
+# listing all open files
+
+list open files under a directory
+  lsof +D /var/log
+
+list open files from a process
+  lsof -c ssh
+  lsof -p <pid>
+
+list only regular files, we have to grep for them
+  lsof | grep REG 
+  (to exclude directories append: grep -vE "/lib/|/usr/|/var/|/proc/|/run/"
+   or just grep for one)
+
+list all network connections
+  lsof -i
+
+list tcp connections
+  lsof -i tcp
+
+list processes listening on a particular port
+  lsof -i :1234
+
+
+# network statistics -> netstat
+
+-t  tcp connections
+-u  udp connections
+-n  prevent hostname resolving
+-l  show listening sockets
+-p  show program holding the connection
+-a  show all sockets
+-s  complete statistic
+
+for TCP connections
+  netstat -tnlpa
+
+for UDP connections
+  netstat -unlpa
+
+same can be done combined
+  netstat -tunlpa
+
+
+# find all files with setuid flag 
+  sudo find / -user root -perm -4000 -exec ls -ldb {} \;
+
+-user root  show only files owned by root user
+-perm 4000  setuid permission
+
+the ls part is for format printing
+
+-perm 2000  setgid permission
+-perm 6000  setuid and setgid
+
+
+# priviledge setting & user account control
+
+chmod u+s prog  set setuid flag
+chmod u-s prog  drop setuid flag
+
+create/delete a new user
+  adduser tmp
+  deluser tmp (only working if nomore processes are running)
+
+change password of the user
+  passwd
+
+spawn process as new user
+  sudo -su tmp prog
+
+(this spawns two process as I saw, once the prog and once the
+ whole command, we can savely kill the sudo process running
+ ass root)
+
+add the new user to a group
+  usermod -a -G <group> <user>
+
+(needs a reloging to become active, will add a secondary group
+ the primary group will not be changed)
+
+for checking who is logged in
+  who
+
+
+Isolate program start by using
+  unshare --pid --fork --mount-proc /bin/bash
+
+this creates a new namespace for the process
+
+
