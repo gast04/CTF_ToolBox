@@ -5,14 +5,15 @@
 #include<winternl.h>
 
 int main(int argc, char** argv) {
-    printf("\nMain Start\n");
+    printf("Main Start\n");
 	
     __asm{
         nop
-        
+        mov eax, 1
+        cpuid
         nop
     };
 
-    printf("Please remove, Debugger\n");
+    printf("Main End\n");
 	return 0;
 }
