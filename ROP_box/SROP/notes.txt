@@ -1,0 +1,11 @@
+
+Can be useful during ROP if there are no good gadgets to set
+a register. 
+Using SROP we have to set all registers, but we also have 
+to set the Stack Pointer and Instruction Pointer for example, 
+so this stuff has to match.
+
+the stack is only important if you need further parameters from it, 
+but it should be enough calling sys_exec ;)
+
+

@@ -1,0 +1,7 @@
+Assumptions:
+
+* binary is not available
+* source code is known
+
+
+
