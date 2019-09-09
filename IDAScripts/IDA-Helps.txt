@@ -1,0 +1,38 @@
+
+ENUMs:
+
+To show enum types in Pseudocode view:
+https://reverseengineering.stackexchange.com/questions/14795/how-to-add-standard-symbolic-constants-with-bitwise-operators-like-ors
+
+add a enum entry based on an already existing type
+delete the last weird entry with a high number
+if one entry contains a zero, IDA will complain too, you have to delete
+that value!
+
+convert enum to bitfield and than you are fine
+
+
+Create Struct like C-Structs:
+
+View->Open Subviews->Local Types
+right click and insert
+after you entered your entered your struct, double click on it
+
+
+
+Debugging with IDA like in r2:
+
+use IDApython to read current values
+'''
+import idc
+idc.get_reg_value("RAX")
+'''
+
+read arbitrary memory:
+'''
+import idaapi, idc
+idaapi.get_byte(addr)
+idaapi.get_bytes(addr, size)
+'''
+
+
