@@ -1,0 +1,24 @@
+
+#############################################################################
+used Tab: Intruder (Eindringling)
+
+We can bruteforce webpages and analyse the respones 
+pretty simple. 
+
+In the "Positions"-Tab enter the request which you want to send:
+  GET /page?name={{§p1val§}} HTTP/1.1
+where §p1val§ will get replaced by the bruteforcing values
+
+In the "Payload"-Tab we can define rules how the Payload will
+have to look. (Bruteforce, List, ...)
+
+In the "Options"-Tab and important setting is the Grep-Extract
+here we can define which part of the response we want to extract
+and print in an extra column of the Results view.
+
+If you have setted up everything, just hit start attack ;)
+(probably it's a good advice to first test it on a local server)
+
+
+#############################################################################
+

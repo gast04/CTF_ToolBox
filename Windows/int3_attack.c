@@ -14,7 +14,6 @@ int main(int argc, char** argv) {
 	
     int checker = 1;
 
-    // fill thread environment block using inline assembly
     __asm{
         nop
         push offset cont

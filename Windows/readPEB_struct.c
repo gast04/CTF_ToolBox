@@ -4,7 +4,6 @@
 #include<windows.h>
 #include<winternl.h>
 
-
 int main(int argc, char** argv) {
     printf("\nMain Start\n");
 	
@@ -19,6 +18,10 @@ int main(int argc, char** argv) {
     };
 
     PPEB peb = teb->ProcessEnvironmentBlock;
+    
+    // to fetch peb is also possible using
+    // mov eax, fs:[0x30] 
+    
     uint8_t isdbg = peb->BeingDebugged;
     printf("isdbg: %d\n", isdbg);
 
