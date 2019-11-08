@@ -17,10 +17,11 @@ def px_dw(addr, p=True):
         print(hex(dw_int))
     return dw_int
 
-def px_qw(addr):
+def px_qw(addr, p=True):
     dw = idaapi.get_bytes(addr, 8)[::-1]
     dq_int =  ord(dw[0]) << 56 | ord(dw[1]) << 48 | ord(dw[2]) << 40 | ord(dw[3]) << 32 | ord(dw[4]) << 24 | ord(dw[5])<< 16 | ord(dw[6])<<8 | ord(dw[7])
-    print(hex(dq_int))
+    if p:
+        print(hex(dq_int))
     return dq_int
 
 
@@ -41,5 +42,24 @@ def hexdump(addr, size):
         dump.append(ord(b))
 
     hexdump_raw(addr, dump)
+	
+
+# usefull if paramters are structs	
+# hexdump(px_qw(reg("rdx")+2*8), 64)  equal
+# getStructArg(reg("rdx"), 2, 8, 64)  easier in my mind
+# getStructArg(reg("rdx"), 2)	enough for most cases  
+def getStructArg(struct_addr, arg, arg_size=8, size=32):
+
+    print_bytes = idaapi.get_bytes(struct_addr+arg*arg_size, arg_size)
+    arg_value = px_qw(struct_addr+arg*arg_size, False)    
+    print("Struct Base: 0x%08x -> Arg[%d]: 0x%08x -> Value: 0x%08x" % (struct_addr, arg, 
+        struct_addr+arg*arg_size, arg_value))
+
+    print_bytes = idaapi.get_bytes(arg_value, size)
+    dump = []
+    for b in print_bytes:
+        dump.append(ord(b))
+
+    hexdump_raw(arg_value, dump)
 
 
