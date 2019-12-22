@@ -35,4 +35,10 @@ idaapi.get_byte(addr)
 idaapi.get_bytes(addr, size)
 '''
 
+Searching: 
+* sequence of bytes
+
+"EC7641" is NOT the same as "EC 76 41"
+
+take care of that
 
