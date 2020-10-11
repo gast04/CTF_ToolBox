@@ -1,0 +1,13 @@
+
+gdb.py is from git commit:
+1 parent 4dec08b commit 6b7c3d99c498609cddf4da63a5c3dfa5d533bacd
+
+Modifications:
+line 506: comment out gdb not installad error msg
+
+line 515: add r2cmd as optional argument to attach function
+
+line 750: reset cmd 
+
+line 796:  setup cmd but using r2
+
