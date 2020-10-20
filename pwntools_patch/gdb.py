@@ -793,9 +793,11 @@ def attach(target, gdbscript = '', exe = None, gdb_args = None, ssh = None, sysr
         cmd += ' -x %s' % (tmp.name)
 
 
-    cmd = "r2 -d {}".format(pid)
+    #cmd = "r2 -d {}".format(pid)
     if r2cmd != None:
-      cmd += " -c '{}'".format(r2cmd)
+      cmd = "r2 -c '{}' -d {}".format(r2cmd, pid)
+    else:
+      cmd = "r2 -d {}".format(pid)
     print("Command: {}".format(cmd))
 
     log.info('running in new terminal: %s' % cmd)
